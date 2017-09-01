@@ -19,7 +19,7 @@ public class Grupo
     /**
      * Busca un estudiante por medio de su clave.
      * @param claveEstudiante Pide la clave del alumno.
-     * @return Si se encontro el alumno regresa la clave, de lo contrario regresa -1.
+     * @return Si se encontro el alumno regresa la posición en el arreglo, de lo contrario regresa -1.
      */
     public int buscaEstudiante(int claveEstudiante)
     {
@@ -51,7 +51,7 @@ public class Grupo
     
     /**
      * Inscribe un alumno en el grupo.
-     * @param unEstudiante es el objeto estudiante a inscribir en el grupo.
+     * @param unEstudiante Es el objeto estudiante a inscribir en el grupo.
      * @return Regresa verdadero si el estudiante fue inscrito o falso en caso de que no se pudiera incribir.
      */
     public boolean inscribir(Estudiante unEstudiante)
@@ -72,18 +72,16 @@ public class Grupo
     
     /**
      * Da de baja un alumno en el grupo.
-     * @param claveAlumno Pide la clave del alumno.
+     * @param unEstudiante Es el objeto estudiante a dar de baja en el grupo.
      * @return Regresa verdadero si el estudiante fue dado de baja o falso si no fue encontrado.
      */
-    public boolean darBaja(int claveAlumno)
+    public boolean darBaja(Estudiante unEstudiante)
     {
-        for( int i = 0; i < estudiantes.length; i++)
+        int existe = this.buscaEstudiante(unEstudiante.dimeClave());
+        if(existe != -1)
         {
-            if(estudiantes[i].dimeClave() == claveAlumno)
-            {
-                estudiantes[i] = null;
-                return true;
-            }
+            estudiantes[existe] = null;
+            return true;
         }
         return false;
     }
